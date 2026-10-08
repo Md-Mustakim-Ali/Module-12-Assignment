@@ -44,6 +44,25 @@ app.post("/students",async(req,res)=>{
 }) 
 
 
+//get students api
+app.get("/students",async(req,res)=>{
+    try{
+        const students=await studentModel.find()
+        res.status(200).json(students)
+    }
+    catch(error){
+        res.status(500).json({
+            message:"Error getting students",
+            error:error.message
+        })
+    }
+})
+
+
+//Get single student api
+
+
+
 app.listen(3000,()=>{
     console.log("Server is running on port 3000")
 })
