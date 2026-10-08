@@ -26,5 +26,24 @@ const studentSchema= new mongoose.Schema({
 
 const studentModel=mongoose.model("Student",studentSchema)
 
+//create student api
+app.post("/students",async(req,res)=>{
+    try{
+        const student=await studentModel.create(req.body)
+        res.status(201).json({
+            message:"Student created succesfully",
+            student:student
+        })
+    }
+    catch(error){
+        res.status(500).json({
+            message:"Error creating student",
+            error: error.message
+        })
+    }
+}) 
 
-app.
+
+app.listen(3000,()=>{
+    console.log("Server is running on port 3000")
+})
